@@ -1,6 +1,6 @@
 import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron';
 
-export type Channels = 'ipc-example';
+export type Channels = 'ipc-example' | 'readFile';
 
 contextBridge.exposeInMainWorld('electron', {
   ipcRenderer: {
@@ -20,4 +20,7 @@ contextBridge.exposeInMainWorld('electron', {
       ipcRenderer.once(channel, (_event, ...args) => func(...args));
     },
   },
+  readFile: async (filePath: string) => {
+    ipcRenderer.invoke('readFile', filePath);
+  }
 });

@@ -11,6 +11,7 @@ declare global {
         ): (() => void) | undefined;
         once(channel: Channels, func: (...args: unknown[]) => void): void;
       };
+      readFile: (filePath: string) => Buffer;
     };
   }
 }
